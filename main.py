@@ -1,6 +1,8 @@
 
 from flask import Flask
 import requests
+import os
+
 
 app = Flask(__name__)
 
@@ -13,4 +15,5 @@ def get_recipe():
     return f'<h1>{label}</h1><p>{recipe_instructions}</p>'
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=5080)  # Запуск приложения
+    port = int(os.getenv("PORT", 5080))  # Порт по умолчанию 8000
+    app.run(host='0.0.0.0', port=port)
